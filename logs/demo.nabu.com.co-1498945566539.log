@@ -1,0 +1,16 @@
+simplewebrtc.bundle.js:15813 join CB null Object
+demo.nabu.com.co/:134 video added Peer
+?nabucom:213 local fail <div class=​"connectionstate">​Connection failed.​</div>​
+?nabucom:216 Uncaught ReferenceError: fileinput is not defined
+    at SimpleWebRTC.<anonymous> (?nabucom:216)
+    at SimpleWebRTC.prototype.emit (simplewebrtc.bundle.js:15095)
+    at WebRTC.<anonymous> (simplewebrtc.bundle.js:15619)
+    at WebRTC.prototype.emit (simplewebrtc.bundle.js:15106)
+    at PeerConnection.<anonymous> (simplewebrtc.bundle.js:15243)
+    at PeerConnection.prototype.emit (simplewebrtc.bundle.js:15095)
+(anonymous) @ ?nabucom:216
+prototype.emit @ simplewebrtc.bundle.js:15095
+(anonymous) @ simplewebrtc.bundle.js:15619
+prototype.emit @ simplewebrtc.bundle.js:15106
+(anonymous) @ simplewebrtc.bundle.js:15243
+prototype.emit @ simplewebrtc.bundle.js:15095
