@@ -192,7 +192,7 @@ if (room) {
     $(document).ready(function(){
         //alert(nombre_sala);
         
-        var val = nombre;
+        var val = nombre_sala;
         webrtc.createRoom(val, function (err, name) {
             console.log(' create room cb', arguments);
 

@@ -27,7 +27,7 @@ class SalaController extends Controller
             $sala->empresas_id = $request->empresa_id;
             $sala->estado = 'abierto';
             if ($sala->save()) {
-            	Session::put('sala', 'https://'.$_SERVER['SERVER_NAME'].'/videollamada'.'/'.$sala->nombre_sala.'?token='.$request->empresa_token);
+            	Session::put('sala', 'https://'.$_SERVER['SERVER_NAME'].'/videollamada?'.'/'.$sala->nombre_sala);
                  return redirect('empresa/dashboard?titulo=Nueva Sala Creada&mensaje=La nueva sala ha sido creado.' );
             } else {
                 return redirect("/?mensaje=No se guardo la sala, porfavor revisa los datos");
