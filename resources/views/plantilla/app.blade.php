@@ -64,6 +64,9 @@
                 if (typeof cerrarModalLogin === 'function') {
                     cerrarModalLogin(event);
                 }
+                if (typeof cerrarModalSala === 'function') {
+                    cerrarModalSalaOut(event);
+                }
             }
 
             var url_string = window.location;

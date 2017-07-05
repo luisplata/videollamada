@@ -15,10 +15,17 @@
     <!-- Content -->
     <div class="wrapper">
         <div class="inner">
+            <h2>Sala</h2>
+             <code id="sala">
+                {{Session::get("sala")}}
+            </code><br/>
+           <button id="botonCopiarSala">Copiar</button>
+            <a class="button" id="crear_sala">Crear una sala</a>
         </div>
     </div>
     <script>
         var boton = document.querySelector('#botonCopiar');
+         var botonSala = document.querySelector('#botonCopiarSala');
 
         boton.addEventListener('click', function (event) {
             // seleccionar el texto de la dirección de email
@@ -43,6 +50,32 @@
             // cuando los navegadores lo soporten, habría
             // que utilizar: removeRange(range)
         });
+
+        botonSala.addEventListener('click', function (event) {
+            // seleccionar el texto de la dirección de email
+            var token = document.querySelector('#sala');
+            var range = document.createRange();
+            range.selectNode(sala);
+            window.getSelection().addRange(range);
+
+            try {
+                // intentar copiar el contenido seleccionado
+                var resultado = document.execCommand('copy');
+                console.log(resultado ? 'Ruta Sala copiado' : 'No se pudo copiar ruta sala');
+                if(resultado){
+                    swal("Ruta Sala copiado en su portapapeles");
+                }
+            } catch (err) {
+                swal("Error","Error al copiarlo en su portapapeles","error");
+            }
+
+            // eliminar el texto seleccionado
+            window.getSelection().removeAllRanges();
+            // cuando los navegadores lo soporten, habría
+            // que utilizar: removeRange(range)
+        });
     </script>
 </section>
+@include("empresa.modal_registro_sala")
+
 @endsection

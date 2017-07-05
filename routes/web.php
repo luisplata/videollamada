@@ -31,15 +31,28 @@ Route::post("login", "LoginController@autenticacion");
 
 Route::post("empresa/registro", "EmpresaController@registro");
 
+
+Route::get("videollamada/{nombre_sala}/{empresa_token}", "SalaController@participante");
+
+
 Route::group(['middleware' => ['usuarioLogeado']], function () {
     Route::prefix('empresa')->group(function () {
         Route::get("dashboard", "EmpresaController@dashboard");
         Route::get("obtener/token", "EmpresaController@obtenerToken");
+
+        Route::post("sala/registro", "SalaController@registro");
+       
     });
     Route::prefix('root')->group(function () {
         Route::get("dashboard", "RootController@dashboard");
     });
+
+    
 });
+
+
+  
+
 
 //Route::middleware([''])->group(function () {
     
