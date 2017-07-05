@@ -47,6 +47,11 @@
     input{
         color: black;
         }
+    .ui-datepicker {
+        background-color: rgb(0,0,0); /* Fallback color */
+       
+    }
+
 </style>
 <div id="registro_sala" class="modal">
     <!-- Modal content -->
@@ -59,15 +64,15 @@
         
         <div class="field">
             <label for="fecha">Fecha</label>
-            <input type="date" name="fecha" id="fecha" required class="input-100" />
+            <input type="date" name="fecha" id="fecha" required class="input-100"  />
         </div>
         <div class="field">
             <label for="hora_inicio">Hora de Inicio</label>
-            <input type="time" name="hora_inicio" id="hora_inicio" required class="input-100" />
+            <input  type="time" name="hora_inicio" id="hora_inicio" required class="input-100" placeholder="00:00"/>
         </div>
         <div class="field">
             <label for="hora_fin">Hora de Fin</label>
-            <input type="time" name="hora_fin" id="hora_fin" required class="input-100" />
+            <input  type="time" name="hora_fin" id="hora_fin" required class="input-100" placeholder="00:00"/>
         </div>
         
         <ul class="actions">
@@ -78,6 +83,10 @@
     </div>
 
 </div>
+
+
+
+
 <script>
     // Get the modal
     var modal_sala = document.getElementById('registro_sala');
@@ -101,3 +110,23 @@
         modal_sala.style.display = "none";
     }
 </script>
+
+  <script>
+    
+
+
+$(document).ready(function(){
+
+        $( "#fecha" ).datepicker({
+                dateFormat: 'yy-mm-dd'
+            });
+
+        
+
+});
+
+
+
+   
+ 
+  </script>

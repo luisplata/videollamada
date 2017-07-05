@@ -1,4 +1,7 @@
 @extends("plantilla.app")
+@section("css")
+    
+@endsection
 @section("contenido")
 <section id="wrapper">
     <header>
@@ -19,6 +22,8 @@
              <code id="sala">
                 {{Session::get("sala")}}
             </code><br/>
+            <p>Para entrar a la sala se debe agregar <code>&nombre=NOMBRE_USUARIO</code> al final de la ruta.</p>
+           
            <button id="botonCopiarSala">Copiar</button>
             <a class="button" id="crear_sala">Crear una sala</a>
         </div>
@@ -76,6 +81,14 @@
         });
     </script>
 </section>
-@include("empresa.modal_registro_sala")
+
+
+
 
 @endsection
+@section("scripts")
+   
+
+   @include("empresa.modal_registro_sala")
+@endsection
+

@@ -14,6 +14,7 @@
         <link rel="stylesheet" href="/css/sweetalert.css" />
         <!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
         <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+        @yield("css")
     </head>
     <body>
         <!-- Page Wrapper -->
@@ -54,6 +55,8 @@
         <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
         <script src="/js/sweetalert-dev.js"></script>
         <script src="/js/main.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        @yield("scripts")
         @include("modal_registro")
         <script>
             window.onclick = function (event) {
