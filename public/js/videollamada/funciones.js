@@ -103,7 +103,7 @@ webrtc.on('videoAdded', function (video, peer) {
                 case 'connected':
                 case 'completed': // on caller side
                     //$(vol).show();
-                    connstate.innerText = 'Conexion establecida.';
+                    connstate.innerText = 'Conexion con '+nombre;
                     break;
                 case 'disconnected':
                     connstate.innerText = 'Desconectado.';
