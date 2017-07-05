@@ -32,7 +32,7 @@ Route::post("login", "LoginController@autenticacion");
 Route::post("empresa/registro", "EmpresaController@registro");
 
 
-Route::get("videollamada/{nombre_sala}", "SalaController@participante");
+Route::get("videollamada?nombre={nombre_sala}", "SalaController@participante");
 
 
 Route::group(['middleware' => ['usuarioLogeado']], function () {

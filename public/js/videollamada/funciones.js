@@ -197,6 +197,7 @@ if (room) {
             console.log(' create room cb', arguments);
 
             var newUrl = location.pathname + '?' + name;
+            //var newUrl = location.pathname + '?token=' + token + '&nombre=' + nombre;
             if (!err) {
                 history.replaceState({foo: 'bar'}, null, newUrl);
                 setRoom(name);
