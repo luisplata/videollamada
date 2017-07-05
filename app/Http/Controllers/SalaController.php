@@ -38,7 +38,7 @@ class SalaController extends Controller
     }
 
     public function participante(Request $request){
-    	$nombre_sala = $request->nombre
+    	$nombre_sala = $request->nombre;
     	try {
 
     		$sala = Sala::BuscarPorNombre($nombre_sala);
