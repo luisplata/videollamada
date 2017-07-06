@@ -36,6 +36,7 @@
                         <li><a href="/">Inicio</a></li>
                         <li><a href="#" id="btn-registro">Registrarse</a></li>
                         <li><a href="/logout">Salir</a></li>
+                        <li><a href="{{url('Documentacion/index.html')}}">Documentación</a></li>
                         @yield("item-menu")
                     </ul>
                     <a href="#" class="close">Close</a>
