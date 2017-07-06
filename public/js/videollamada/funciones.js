@@ -128,6 +128,11 @@ webrtc.on('videoRemoved', function (video, peer) {
     if (remotes && el) {
         remotes.removeChild(el);
     }
+
+    //cerrar ventana actual
+    window.close();
+
+
 });
 
 // local volume has changed
@@ -250,4 +255,7 @@ function desconectar(){
     webrtc.disconnect();
 
     //window.location = "https://demo.nabu.com.co";
+
+    //cerrar ventana actual
+    window.close();
 }
