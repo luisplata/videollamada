@@ -1,6 +1,6 @@
 
 // grab the room from the URL
-var room = location.search && location.search.split('?')[1];
+var room = location.search && location.search.split("&")[0].replace("?","");
 //alert(room);
 
 // create our webrtc connection
@@ -103,16 +103,16 @@ webrtc.on('videoAdded', function (video, peer) {
                 case 'connected':
                 case 'completed': // on caller side
                     //$(vol).show();
-                    connstate.innerText = 'Conexion establecida.';
+                    connstate.innerText = 'Conectado';
                     break;
                 case 'disconnected':
                     connstate.innerText = 'Desconectado.';
                     break;
                 case 'failed':
-                    connstate.innerText = 'La conexion falló.';
+                    connstate.innerText = 'Falló.';
                     break;
                 case 'closed':
-                    connstate.innerText = 'Conexion cerrada.';
+                    connstate.innerText = 'Cerrada.';
                     break;
                 }
             });
@@ -128,6 +128,11 @@ webrtc.on('videoRemoved', function (video, peer) {
     if (remotes && el) {
         remotes.removeChild(el);
     }
+
+    //cerrar ventana actual
+    window.close();
+
+
 });
 
 // local volume has changed
@@ -250,4 +255,7 @@ function desconectar(){
     webrtc.disconnect();
 
     //window.location = "https://demo.nabu.com.co";
+
+    //cerrar ventana actual
+    window.close();
 }

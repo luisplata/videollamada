@@ -53,7 +53,7 @@
 
             #finalizar{
               margin-top:5px; 
-              margin-left:85%;
+              margin-left:80%;
               position: absolute;
               z-index: 100;
             }
