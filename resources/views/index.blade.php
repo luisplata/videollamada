@@ -6,7 +6,7 @@
     <div class="inner">
         <div class="logo"><span class="icon fa-video-camera"></span></div>
         <h2>Nabu - Videollamada</h2>
-        <p>Videollamadas incluidas en el navegador. Pruebalo <a target="_blank" href="https://demo.nabu.com.co?prueba">Aqui</a>.</p>
+        <p>Videollamadas incluidas en el navegador. Pruebalo <a target="_blank" href="https://videollamada.nabu.com.co/videollamada?sala=595d836068c92&nombre=anonimo">Aqui</a>.</p>
     </div>
 
 </section>
