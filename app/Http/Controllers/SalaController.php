@@ -23,7 +23,7 @@ class SalaController extends Controller {
                 return redirect("/?mensaje=No se guardo la sala, porfavor revisa los datos");
             }
         } catch (\PDOException $e) {
-            return redirect("/?mensaje=No se guardo, " . $e->getMessage());
+            return redirect("empresa/dashboard?mensaje=No se guardo, " . $e->getMessage());
         }
     }
 
