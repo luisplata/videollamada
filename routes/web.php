@@ -40,7 +40,7 @@ Route::group(['middleware' => ['usuarioLogeado']], function () {
         Route::get("dashboard", "EmpresaController@dashboard");
         Route::get("obtener/token", "EmpresaController@obtenerToken");
 
-        Route::post("sala/registro", "SalaController@registro");
+        Route::get("sala/registro", "SalaController@registro");
        
     });
     Route::prefix('root')->group(function () {
