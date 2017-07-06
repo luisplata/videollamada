@@ -103,16 +103,16 @@ webrtc.on('videoAdded', function (video, peer) {
                 case 'connected':
                 case 'completed': // on caller side
                     //$(vol).show();
-                    connstate.innerText = 'Conexion con '+nombre;
+                    connstate.innerText = 'Conectado';
                     break;
                 case 'disconnected':
                     connstate.innerText = 'Desconectado.';
                     break;
                 case 'failed':
-                    connstate.innerText = 'La conexion falló.';
+                    connstate.innerText = 'Falló.';
                     break;
                 case 'closed':
-                    connstate.innerText = 'Conexion cerrada.';
+                    connstate.innerText = 'Cerrada.';
                     break;
                 }
             });
