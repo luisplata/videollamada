@@ -66,7 +66,7 @@
             <input type="password" name="pass" id="pass" required />
         </div>
         <ul class="actions">
-            <li><input type="submit" value="Send Message" /></li>
+            <li><input type="submit" value="Registrarse" /></li>
             <li><input type="reset" value="Cancelar" class="special" onclick="cerrarModal()" /></li>
         </ul>
         {!! Form::close() !!}

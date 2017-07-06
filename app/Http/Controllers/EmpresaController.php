@@ -22,7 +22,7 @@ class EmpresaController extends Controller {
             $empresa->pass = Hash::make($request->pass);
             $empresa->token = Hash::make(date("YYYY-MM-dd HH:ii:ss"));
             if ($empresa->save()) {
-                return redirect("/");
+                return redirect("/?titulo=Guardado con éxito&mensaje=Se guardaron los datos de manera exitosa, Ya puede ingresar por medio del login");
             } else {
                 return redirect("/?mensaje=No se guardo la empresa, porfavor revisa los datos");
             }

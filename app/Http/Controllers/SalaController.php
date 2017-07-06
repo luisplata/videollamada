@@ -12,7 +12,7 @@ class SalaController extends Controller {
         try {
             $sala = new \App\Sala();
             $sala->nombre_sala = uniqid();
-            $sala->fecha_hora_inicio = date("H:i:s");
+            $sala->fecha_hora_inicio = date("Y-m-d H:i:s");
             //$sala->fecha_hora_final = $request->fecha.' '.$request->hora_fin;
             $sala->empresas_id = $request->empresa_id;
             //$sala->estado = 'abierto';
