@@ -43,7 +43,15 @@
                 </div>
             </nav>
             @yield("contenido")
-            @yield("footer")
+
+            <!-- Footer -->
+            <section id="footer">
+                <div class="inner">
+                    <ul class="copyright">
+                        <li>&copy; <strong>Nabu</strong> Todos los derechos reservados.</li><li>Diseñado en: <a target="_blank" href="http://html5up.net">HTML5 UP</a></li>
+                    </ul>
+                </div>
+            </section>
 
 
         </div>
@@ -60,27 +68,27 @@
         @yield("scripts")
         @include("modal_registro")
         <script>
-            window.onclick = function (event) {
-                if (typeof cerrarModalRegistro === 'function') {
-                    //cerrarModalLogin
-                    cerrarModalRegistro(event);
-                }
-                if (typeof cerrarModalLogin === 'function') {
-                    cerrarModalLogin(event);
-                }
-                if (typeof cerrarModalSala === 'function') {
-                    cerrarModalSalaOut(event);
-                }
-            }
+window.onclick = function (event) {
+    if (typeof cerrarModalRegistro === 'function') {
+        //cerrarModalLogin
+        cerrarModalRegistro(event);
+    }
+    if (typeof cerrarModalLogin === 'function') {
+        cerrarModalLogin(event);
+    }
+    if (typeof cerrarModalSala === 'function') {
+        cerrarModalSalaOut(event);
+    }
+}
 
-            var url_string = window.location;
-            var url = new URL(url_string);
-            var mensaje = url.searchParams.get("mensaje");
-            var tipo = url.searchParams.get("tipo");
-            var titulo = url.searchParams.get("titulo");
-            if (mensaje != null) {
-                swal(titulo == null ? "" : titulo, mensaje, tipo == null ? "success" : "error");
-            }
+var url_string = window.location;
+var url = new URL(url_string);
+var mensaje = url.searchParams.get("mensaje");
+var tipo = url.searchParams.get("tipo");
+var titulo = url.searchParams.get("titulo");
+if (mensaje != null) {
+    swal(titulo == null ? "" : titulo, mensaje, tipo == null ? "success" : "error");
+}
         </script>
     </body>
 </html>

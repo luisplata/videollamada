@@ -11,22 +11,8 @@
 
 </section>
 
-
+@include("modal_login")
 @endsection
 @section("item-menu")
 <li><a href="#" id="btn-open-modal">Ingresar</a></li>
-@endsection
-
-
-@section("footer")
-
-<!-- Footer -->
-<section id="footer">
-    <div class="inner">
-        <ul class="copyright">
-            <li>&copy; <strong>Nabu</strong> Todos los derechos reservados.</li><li>Diseñado en: <a target="_blank" href="http://html5up.net">HTML5 UP</a></li>
-        </ul>
-    </div>
-</section>
-@include("modal_login")
 @endsection
