@@ -22,10 +22,10 @@ class SalaController extends Controller
 
             $sala = new \App\Sala();
             $sala->nombre_sala = uniqid();
-            $sala->fecha_hora_inicio = $request->fecha.' '.$request->hora_inicio;
-            $sala->fecha_hora_final = $request->fecha.' '.$request->hora_fin;
+            $sala->fecha_hora_inicio = date("H:i:s");
+            //$sala->fecha_hora_final = $request->fecha.' '.$request->hora_fin;
             $sala->empresas_id = $request->empresa_id;
-            $sala->estado = 'abierto';
+            //$sala->estado = 'abierto';
             if ($sala->save()) {
             	Session::put('sala', 'https://'.$_SERVER['SERVER_NAME'].'/videollamada?sala='.$sala->nombre_sala.'&nombre=NOMBRE_USUARIO');
                  return redirect('empresa/dashboard?titulo=Nueva Sala Creada&mensaje=La nueva sala ha sido creado.' );
