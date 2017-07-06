@@ -9,6 +9,11 @@
         <title>@yield("titulo", "Nabu")</title>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="application-name" content="Nabu - videollamadas" />
+        <meta name="author" content="nabu.com.co" />
+        <meta name="description" content="Servicio de Videollamadas en el navegador" />
+        <meta name="keywords" content="Videollamada, videollamada navegador, servicio videollamada, servicio videollamada navegador" />
+        <meta name="robots" content="index, follow" />
         <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
         <link rel="stylesheet" href="/css/main.css" />        
         <link rel="stylesheet" href="/css/sweetalert.css" />
@@ -34,8 +39,17 @@
                     <h2>Menu</h2>
                     <ul class="links">
                         <li><a href="/">Inicio</a></li>
-                        <li><a href="#" id="btn-registro">Registrarse</a></li>
-                        <li><a href="/logout">Salir</a></li>
+                        <?php
+                        if (!is_object(Session::get("empresa"))) {
+                            ?>
+                            <li><a href="#" id="btn-registro">Registrarse</a></li>
+                            <?php
+                        } else {
+                            ?>
+                            <li><a href="/logout">Salir</a></li>
+                            <?php
+                        }
+                        ?>
                         <li><a target="_blank" href="{{url('Documentacion/index.html')}}">Documentación</a></li>
                         @yield("item-menu")
                     </ul>
