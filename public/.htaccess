@@ -24,3 +24,6 @@ RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^ index.php [L]
+#Redireccion del http -> https
+RewriteCond %{HTTPS} !=on
+RewriteRule .* https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
