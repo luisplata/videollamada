@@ -25,7 +25,7 @@
             <p>Para entrar a la sala se debe agregar <code>&nombre=NOMBRE_USUARIO</code> al final de la ruta.</p> 
            
            <button id="botonCopiarSala">Copiar</button>
-            <a class="button" id="crear_sala">Crear una sala</a>
+            <a  href="sala/registro" class="button" id="crear_sala">Crear una sala</a>
         </div>
     </div>
     <script>
@@ -89,6 +89,6 @@
 @section("scripts")
    
 
-   @include("empresa.modal_registro_sala")
+ 
 @endsection
 

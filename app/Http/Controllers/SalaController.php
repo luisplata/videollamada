@@ -15,16 +15,16 @@ class SalaController extends Controller
 
 
 
-	public function registro(Request $request) {
+	public function registro() {
         try {
 
-        	//print_r($request);
+        	
 
             $sala = new \App\Sala();
             $sala->nombre_sala = uniqid();
             $sala->fecha_hora_inicio = date("H:i:s");
             //$sala->fecha_hora_final = $request->fecha.' '.$request->hora_fin;
-            $sala->empresas_id = $request->empresa_id;
+            $sala->empresas_id = Session::get('empresa')->id;
             //$sala->estado = 'abierto';
             if ($sala->save()) {
             	Session::put('sala', 'https://'.$_SERVER['SERVER_NAME'].'/videollamada?sala='.$sala->nombre_sala.'&nombre=NOMBRE_USUARIO');
