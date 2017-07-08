@@ -31,6 +31,24 @@ class EmpresaController extends Controller {
         }
     }
 
+    public function registro_api(Request $request) {
+        try {
+            $empresa = new \App\Empresa();
+            $empresa->nombre = $request->nombre;
+            $empresa->email = $request->email;
+            $empresa->telefono = $request->telefono;
+            $empresa->pass = Hash::make($request->pass);
+            $empresa->token = Hash::make(date("YYYY-MM-dd HH:ii:ss"));
+            if ($empresa->save()) {
+                return response()->json(array("token" => $empresa->token));
+            } else {
+                return response()->json("No se guardo la empresa", 513);
+            }
+        } catch (\PDOException $e) {
+            return response()->json($e->getPrevious(), 514);
+        }
+    }
+
     public function obtenerToken() {
         $empresa = \App\Empresa::find(Session::get("empresa")->id);
         $empresa->token = Hash::make(date("YYYY-MM-dd HH:ii:ss"));

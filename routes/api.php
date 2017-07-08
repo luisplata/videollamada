@@ -73,3 +73,35 @@ use Illuminate\Http\Request;
  * @apiUse db
  */
 Route::post("obtener/url","SalaController@obtenerUrl");
+/**
+ * @api {POST} /api/empresa/registrar Recurso para registrar una empresa desde afuera
+ * @apiGroup Registro y Control
+ * @apiDescription Cuando un sistema externo desea registrar sus usuarios internamente.
+ * Puede hacerlo mediante este recurso
+ * @apiVersion 0.1.0
+ * 
+ * @apiExample Ejemplo de Uso:
+ * https://videollamada.nabu.com.co/api/empresa/registro
+ * 
+ * @apiParam {string} nombre **maxlength:190** | **Required**
+ * @apiParam {string} email **maxlength:190** | **Required** | **Unique**
+ * @apiParam {string} telefono **maxlength:190**
+ * @apiParam {string} pass **maxlength:190** | **Required** __Pasword de la plataforma__
+ * 
+ * 
+ * @apiSuccess {String} token Token del registro nuevo
+ * 
+ * @apiSuccessExample Ejemplo de Éxito:
+ *      HTTP/1.1 200 OK
+ *      {
+ *          token:"$gd7689768&8ihji&hnoonofe"
+ *      }
+ * 
+ * @apiSampleRequest https://videollamada.nabu.com.co/api/empresa/registro
+ * 
+ * @apiError 513 No se pudo Guardar la información
+ * @apiError 514 Error de validación.
+ * 
+ * @apiUse db
+ */
+Route::post("empresa/registro", "EmpresaController@registro_api");

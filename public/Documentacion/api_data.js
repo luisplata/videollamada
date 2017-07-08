@@ -81,6 +81,107 @@ define({ "api": [
   },
   {
     "type": "POST",
+    "url": "/api/empresa/registrar",
+    "title": "Recurso para registrar una empresa desde afuera",
+    "group": "Registro_y_Control",
+    "description": "<p>Cuando un sistema externo desea registrar sus usuarios internamente. Puede hacerlo mediante este recurso</p>",
+    "version": "0.1.0",
+    "examples": [
+      {
+        "title": "Ejemplo de Uso:",
+        "content": "https://videollamada.nabu.com.co/api/empresa/registro",
+        "type": "json"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "nombre",
+            "description": "<p><strong>maxlength:190</strong> | <strong>Required</strong></p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "email",
+            "description": "<p><strong>maxlength:190</strong> | <strong>Required</strong> | <strong>Unique</strong></p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "telefono",
+            "description": "<p><strong>maxlength:190</strong></p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "pass",
+            "description": "<p><strong>maxlength:190</strong> | <strong>Required</strong> <strong>Pasword de la plataforma</strong></p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "token",
+            "description": "<p>Token del registro nuevo</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Ejemplo de Éxito:",
+          "content": "HTTP/1.1 200 OK\n{\n    token:\"$gd7689768&8ihji&hnoonofe\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "sampleRequest": [
+      {
+        "url": "https://videollamada.nabu.com.co/api/empresa/registro"
+      }
+    ],
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "513",
+            "description": "<p>No se pudo Guardar la información</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "514",
+            "description": "<p>Error de validación.</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "501",
+            "description": "<p>Usualmente para cuando es error de Base de datos, de duplicado, requerido, violacion de llave foranea.</p>"
+          }
+        ]
+      }
+    },
+    "filename": "routes/api.php",
+    "groupTitle": "Registro_y_Control",
+    "name": "PostApiEmpresaRegistrar"
+  },
+  {
+    "type": "POST",
     "url": "/api/obtener/url",
     "title": "Consulta de url para la videollamada",
     "group": "Videollamada",
