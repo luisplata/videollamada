@@ -8,17 +8,21 @@ use App\Sala;
 
 class SalaController extends Controller {
 
+
     public function registro(Request $request) {
         try {
             $empresa = \App\Empresa::getByToken($request->token);
             if (!is_object($empresa)) {
                 return redirect("empresa/dashboard?titulo=Error&mensaje=El token no es valido&tipo=error");
             }
+
             $sala = new \App\Sala();
             $sala->nombre_sala = uniqid();
             $sala->fecha_hora_inicio = date("Y-m-d H:i:s");
             //$sala->fecha_hora_final = $request->fecha.' '.$request->hora_fin;
+
             $sala->empresas_id = $empresa->id;
+
             //$sala->estado = 'abierto';
             if ($sala->save()) {
                 Session::put('sala', 'https://' . $_SERVER['SERVER_NAME'] . '/videollamada?sala=' . $sala->nombre_sala . '&nombre=NOMBRE_USUARIO');
