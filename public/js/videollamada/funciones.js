@@ -3,6 +3,12 @@
 var room = location.search && location.search.split("&")[0].replace("?","");
 //alert(room);
 
+//nickname
+var nick = location.search && location.search.split("&")[1].replace("nombre=","");
+
+//alert(nick);
+
+
 // create our webrtc connection
 var webrtc = new SimpleWebRTC({
     // the id/element dom element that will hold "our" video
@@ -13,8 +19,12 @@ var webrtc = new SimpleWebRTC({
     autoRequestMedia: true,
     debug: false,
     detectSpeakingEvents: true,
-    autoAdjustMic: false
+    autoAdjustMic: false,
+
+    nick: nick,
 });
+
+console.log(webrtc);
 
 // when it's ready, join if we got a room from the URL
 webrtc.on('readyToCall', function () {
@@ -31,9 +41,9 @@ function showVolume(el, volume) {
 
 // we got access to the camera
 webrtc.on('localStream', function (stream) {
-    var button = document.querySelector('form>button');
+    /*var button = document.querySelector('form>button');
     if (button) button.removeAttribute('disabled');
-    $('#localVolume').show();
+    $('#localVolume').show();*/
 });
 // we did not get access to the camera
 webrtc.on('localMediaError', function (err) {
@@ -56,11 +66,23 @@ webrtc.on('localScreenAdded', function (video) {
 webrtc.on('localScreenRemoved', function (video) {
     document.getElementById('localScreenContainer').removeChild(video);
     $('#localScreenContainer').hide();
+
+    //cerrar ventana actual
+    window.close();
+
 });
 
 // a peer video has been added
 webrtc.on('videoAdded', function (video, peer) {
     console.log('video added', peer);
+    console.log('Nickname', peer.nick);
+    console.log(webrtc);
+
+    console.log(obtener_numero_de_usuarios(webrtc));//numero de pares conectados
+
+
+
+
     var remotes = document.getElementById('remotes');
     if (remotes) {
         var container = document.createElement('div');
@@ -97,23 +119,23 @@ webrtc.on('videoAdded', function (video, peer) {
             container.appendChild(connstate);
             peer.pc.on('iceConnectionStateChange', function (event) {
                 switch (peer.pc.iceConnectionState) {
-                case 'checking':
-                    connstate.innerText = 'Conectando';
-                    break;
-                case 'connected':
-                case 'completed': // on caller side
-                    //$(vol).show();
-                    connstate.innerText = 'Conectado';
-                    break;
-                case 'disconnected':
-                    connstate.innerText = 'Desconectado.';
-                    break;
-                case 'failed':
-                    connstate.innerText = 'Falló.';
-                    break;
-                case 'closed':
-                    connstate.innerText = 'Cerrada.';
-                    break;
+                    case 'checking':
+                        connstate.innerText = 'Conectando';
+                        break;
+                    case 'connected':
+                    case 'completed': // on caller side
+                        //$(vol).show();
+                        connstate.innerText = 'Conectado';
+                        break;
+                    case 'disconnected':
+                        connstate.innerText = 'Desconectado.';
+                        break;
+                    case 'failed':
+                        connstate.innerText = 'Falló.';
+                        break;
+                    case 'closed':
+                        connstate.innerText = 'Cerrada.';
+                        break;
                 }
             });
         }
@@ -146,32 +168,44 @@ webrtc.on('remoteVolumeChange', function (peer, volume) {
 
 // local p2p/ice failure
 webrtc.on('iceFailed', function (peer) {
+
+    var pc = peer.pc;
+    console.log('had local relay candidate', pc.hadLocalRelayCandidate);
+    console.log('had remote relay candidate', pc.hadRemoteRelayCandidate);
+
     var connstate = document.querySelector('#container_' + webrtc.getDomId(peer) + ' .connectionstate');
     console.log('local fail', connstate);
     if (connstate) {
-        connstate.innerText = 'Connection failed.';
+        connstate.innerText = 'Falló.';
         fileinput.disabled = 'disabled';
     }
 });
 
 // remote p2p/ice failure
 webrtc.on('connectivityError', function (peer) {
+
+    var pc = peer.pc;
+    console.log('had local relay candidate', pc.hadLocalRelayCandidate);
+    console.log('had remote relay candidate', pc.hadRemoteRelayCandidate);
+
     var connstate = document.querySelector('#container_' + webrtc.getDomId(peer) + ' .connectionstate');
     console.log('remote fail', connstate);
     if (connstate) {
-        connstate.innerText = 'Connection failed.';
+        connstate.innerText = 'Falló.';
         fileinput.disabled = 'disabled';
     }
 });
 
 // Since we use this twice we put it here
 function setRoom(name) {
-    document.querySelector('form').remove();
+    /*document.querySelector('form').remove();
     document.getElementById('title').innerText = '';
     document.getElementById('subTitle').innerText =  '';
 
     document.getElementById('title').style.display = "none";
-    document.getElementById('subTitle').style.display = "none";
+    document.getElementById('subTitle').style.display = "none";*/
+
+
     //alert('Link to join: ' + location.href);
     $('body').addClass('active');
 }
@@ -217,7 +251,8 @@ if (room) {
 
 }
 
-var button = document.getElementById('screenShareButton'),
+//Compartir screen
+/*var button = document.getElementById('screenShareButton'),
     setButton = function (bool) {
         button.innerText = bool ? 'share screen' : 'stop sharing';
     };
@@ -244,7 +279,7 @@ button.onclick = function () {
         });
 
     }
-};
+};*/
 
 
 //funciones
@@ -258,4 +293,10 @@ function desconectar(){
 
     //cerrar ventana actual
     window.close();
+}
+
+function obtener_numero_de_usuarios(webrtc){
+    var n_user = webrtc.webrtc.peers.length;
+
+    return n_user;
 }
