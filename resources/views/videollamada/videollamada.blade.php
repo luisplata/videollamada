@@ -11,8 +11,11 @@
         <meta name="lang" content="es-ES" />
       <link rel="stylesheet" href="/css/main.css" /> 
 
+
       <!-- Bootstrap -->
     <link href="/css/bootstrap.min.css" rel="stylesheet"> 
+
+    <link rel="stylesheet" href="/css/sweetalert.css" />
 
         <style>
         body{
@@ -145,6 +148,7 @@
         <script src="/js/videollamada/adapter-latest.js"></script>
         <script src="/js/videollamada/simplewebrtc.bundle.js"></script>
         <script src="/js/bootstrap.min.js"></script>
+        <script src="/js/sweetalert-dev.js"></script>
 
         <script type="text/javascript">
            <?php echo  'var token="'.$token_empresa.'";'; ?> 

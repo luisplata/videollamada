@@ -3,9 +3,11 @@
 var room = location.search && location.search.split("&")[0].replace("?","");
 //alert(room);
 
+if(room == ""){swal("Error", "Error en nombre de sala", "error" );}
+
 //nickname
 var nick = location.search && location.search.split("&")[1].replace("nombre=","");
-
+if(nick == ""){swal("Error", "Error en nombre de usuario", "error" );}
 //alert(nick);
 
 
@@ -26,10 +28,27 @@ var webrtc = new SimpleWebRTC({
 
 console.log(webrtc);
 
+
+
 // when it's ready, join if we got a room from the URL
 webrtc.on('readyToCall', function () {
-    // you can name it anything
-    if (room) webrtc.joinRoom(room);
+
+        console.log("Entrando al room");
+        // you can name it anything
+        if (room){ 
+            webrtc.joinRoom(room);
+        }else{
+            swal("Error", "No se pudo entrar a la videollamada", "error" );
+        }
+
+    
+});
+
+
+webrtc.on('createdPeer', function (peer){
+    console.log("createdPeer");
+    console.log(peer);
+    console.log(obtener_numero_de_usuarios(webrtc));
 });
 
 function showVolume(el, volume) {
@@ -47,7 +66,7 @@ webrtc.on('localStream', function (stream) {
 });
 // we did not get access to the camera
 webrtc.on('localMediaError', function (err) {
-
+    swal("Error", "No se pudo acceder a la camara", "error" );
 });
 
 // local screen obtained
@@ -81,66 +100,96 @@ webrtc.on('videoAdded', function (video, peer) {
     console.log(obtener_numero_de_usuarios(webrtc));//numero de pares conectados
 
 
+    if(obtener_numero_de_usuarios(webrtc) == 2){
+        //alert("Sala llena");
+
+        console.log('PEER ', peer);
+        /*var remotes = document.getElementById('remotes');
+        var el = document.getElementById(peer ? 'container_' + webrtc.getDomId(peer) : 'localScreenContainer');
+        if (remotes && el) {
+            remotes.removeChild(el);
+        }*/
 
 
-    var remotes = document.getElementById('remotes');
-    if (remotes) {
-        var container = document.createElement('div');
-        container.className = 'videoContainer';
-        container.id = 'container_' + webrtc.getDomId(peer);
-        container.appendChild(video);
+        
+            
 
-        // suppress contextmenu
-        video.oncontextmenu = function () { return false; };
 
-        // resize the video on click
-        video.onclick = function () {
-            //container.style.width = video.videoWidth + 'px';
-            //container.style.height = video.videoHeight + 'px';
+        peer.end();
 
-            container.style.width = '100%';
-            container.style.height = '100%';
-        };
+    }else{
 
-        // show the remote volume
-        /*var vol = document.createElement('meter');
-        vol.id = 'volume_' + peer.id;
-        vol.className = 'volume';
-        vol.min = -45;
-        vol.max = -20;
-        vol.low = -40;
-        vol.high = -25;
-        container.appendChild(vol);*/
+        var remotes = document.getElementById('remotes');
+        if (remotes) {
+            var container = document.createElement('div');
+            container.className = 'videoContainer';
+            container.id = 'container_' + webrtc.getDomId(peer);
+            container.appendChild(video);
 
-        // show the ice connection state
-        if (peer && peer.pc) {
-            var connstate = document.createElement('div');
-            connstate.className = 'connectionstate';
-            container.appendChild(connstate);
-            peer.pc.on('iceConnectionStateChange', function (event) {
-                switch (peer.pc.iceConnectionState) {
-                    case 'checking':
-                        connstate.innerText = 'Conectando';
-                        break;
-                    case 'connected':
-                    case 'completed': // on caller side
-                        //$(vol).show();
-                        connstate.innerText = 'Conectado';
-                        break;
-                    case 'disconnected':
-                        connstate.innerText = 'Desconectado.';
-                        break;
-                    case 'failed':
-                        connstate.innerText = 'Falló.';
-                        break;
-                    case 'closed':
-                        connstate.innerText = 'Cerrada.';
-                        break;
-                }
-            });
+            // suppress contextmenu
+            video.oncontextmenu = function () { return false; };
+
+            // resize the video on click
+            video.onclick = function () {
+                //container.style.width = video.videoWidth + 'px';
+                //container.style.height = video.videoHeight + 'px';
+
+                container.style.width = '100%';
+                container.style.height = '100%';
+            };
+
+            // show the remote volume
+            /*var vol = document.createElement('meter');
+            vol.id = 'volume_' + peer.id;
+            vol.className = 'volume';
+            vol.min = -45;
+            vol.max = -20;
+            vol.low = -40;
+            vol.high = -25;
+            container.appendChild(vol);*/
+
+            // show the ice connection state
+            if (peer && peer.pc) {
+                var connstate = document.createElement('div');
+                connstate.className = 'connectionstate';
+                container.appendChild(connstate);
+                peer.pc.on('iceConnectionStateChange', function (event) {
+                    switch (peer.pc.iceConnectionState) {
+                        case 'checking':
+                            connstate.innerText = 'Conectando';
+                            break;
+                        case 'connected':
+                        case 'completed': // on caller side
+                            //$(vol).show();
+                            connstate.innerText = 'Conectado';
+                            break;
+                        case 'disconnected':
+                            connstate.innerText = 'Desconectado.';
+
+                            break;
+                        case 'failed':
+                            connstate.innerText = 'Falló.';
+
+                            swal("Error", "Videollamada Falló, intente nuevamente", "error" );
+
+                            break;
+                        case 'closed':
+                            connstate.innerText = 'Cerrada.';
+
+                            
+                            break;
+                    }
+                });
+            }
+            remotes.appendChild(container);
+
         }
-        remotes.appendChild(container);
+
     }
+
+
+    
+    
 });
 // a peer was removed
 webrtc.on('videoRemoved', function (video, peer) {
@@ -151,8 +200,20 @@ webrtc.on('videoRemoved', function (video, peer) {
         remotes.removeChild(el);
     }
 
-    //cerrar ventana actual
-    window.close();
+    console.log(peer.closed);
+    if(peer.closed == true && peer.parent.peers.length == 0){
+        //videollamada finalizada
+
+        console.log(peer.nick);
+
+        console.log(peer.parent._log());
+
+
+        swal("Info", peer.nick+" ha finalizado la llamada", "success" );
+
+        //cerrar ventana actual
+        //window.close();
+    }
 
 
 });
@@ -178,6 +239,8 @@ webrtc.on('iceFailed', function (peer) {
     if (connstate) {
         connstate.innerText = 'Falló.';
         fileinput.disabled = 'disabled';
+
+        swal("Error", "Videollamada Falló, intente nuevamente", "error" );
     }
 });
 
@@ -193,6 +256,8 @@ webrtc.on('connectivityError', function (peer) {
     if (connstate) {
         connstate.innerText = 'Falló.';
         fileinput.disabled = 'disabled';
+
+        swal("Error", "Videollamada Falló, intente nuevamente", "error" );
     }
 });
 
@@ -242,6 +307,8 @@ if (room) {
                 setRoom(name);
             } else {
                 console.log(err);
+
+                swal("Error", "No se pudo crear sala, intente nuevamente", "error" );
             }
         });
     });
@@ -285,14 +352,21 @@ button.onclick = function () {
 //funciones
 
 function desconectar(){
-    webrtc.stopLocalVideo();
-    webrtc.leaveRoom();
-    webrtc.disconnect();
 
-    //window.location = "https://demo.nabu.com.co";
+    if(obtener_numero_de_usuarios(webrtc) == 1){
+        webrtc.stopLocalVideo();
+        webrtc.leaveRoom();
+        webrtc.disconnect();
 
-    //cerrar ventana actual
-    window.close();
+        
+
+        swal("Info", "Se ha finalizado la llamada", "success" );
+
+        //cerrar ventana actual
+        //window.close();
+    }
+
+    
 }
 
 function obtener_numero_de_usuarios(webrtc){
