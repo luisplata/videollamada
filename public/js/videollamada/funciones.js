@@ -212,7 +212,7 @@ webrtc.on('videoRemoved', function (video, peer) {
         swal("Info", peer.nick+" ha finalizado la llamada", "success" );
 
         //cerrar ventana actual
-        //window.close();
+        window.close();
     }
 
 
@@ -363,7 +363,7 @@ function desconectar(){
         swal("Info", "Se ha finalizado la llamada", "success" );
 
         //cerrar ventana actual
-        //window.close();
+        window.close();
     }
 
     
