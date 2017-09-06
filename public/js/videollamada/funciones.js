@@ -24,7 +24,7 @@ var webrtc = new SimpleWebRTC({
     autoAdjustMic: false,
 
     nick: nick,
-    //url: 'http://signalmaster-tilsito.c9users.io:8080/'
+    url: 'http://signalmaster-tilsito.c9users.io:8080/'
 });
 
 console.log(webrtc);
