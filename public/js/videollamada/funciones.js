@@ -19,11 +19,12 @@ var webrtc = new SimpleWebRTC({
     remoteVideosEl: '',
     // immediately ask for camera access
     autoRequestMedia: true,
-    debug: false,
+    debug: true,
     detectSpeakingEvents: true,
     autoAdjustMic: false,
 
     nick: nick,
+    //url: 'http://signalmaster-tilsito.c9users.io:8080/'
 });
 
 console.log(webrtc);
@@ -63,14 +64,18 @@ webrtc.on('localStream', function (stream) {
     /*var button = document.querySelector('form>button');
     if (button) button.removeAttribute('disabled');
     $('#localVolume').show();*/
+    console.log("Se accedio a la camara.");
 });
 // we did not get access to the camera
 webrtc.on('localMediaError', function (err) {
+    console.log(err);
+    console.log("No se accedio a la camara.");
     swal("Error", "No se pudo acceder a la camara", "error" );
 });
 
 // local screen obtained
 webrtc.on('localScreenAdded', function (video) {
+    console.log("local screen obtained");
     video.onclick = function () {
         //video.style.width = video.videoWidth + 'px';
         //video.style.height = video.videoHeight + 'px';
@@ -83,6 +88,7 @@ webrtc.on('localScreenAdded', function (video) {
 });
 // local screen removed
 webrtc.on('localScreenRemoved', function (video) {
+    console.log("local screen removed");
     document.getElementById('localScreenContainer').removeChild(video);
     $('#localScreenContainer').hide();
 
@@ -104,6 +110,7 @@ webrtc.on('videoAdded', function (video, peer) {
         //alert("Sala llena");
 
         console.log('PEER ', peer);
+        console.log("se elimino peer que intento entrar a la sala llena");
         /*var remotes = document.getElementById('remotes');
         var el = document.getElementById(peer ? 'container_' + webrtc.getDomId(peer) : 'localScreenContainer');
         if (remotes && el) {
@@ -157,25 +164,28 @@ webrtc.on('videoAdded', function (video, peer) {
                     switch (peer.pc.iceConnectionState) {
                         case 'checking':
                             connstate.innerText = 'Conectando';
+                            console.log('Conectando');
                             break;
                         case 'connected':
                         case 'completed': // on caller side
                             //$(vol).show();
                             connstate.innerText = 'Conectado';
+                            console.log('Conectado');
                             break;
                         case 'disconnected':
                             connstate.innerText = 'Desconectado.';
+                            console.log('Desconectado');
 
                             break;
                         case 'failed':
                             connstate.innerText = 'Falló.';
-
+                            console.log('Falló');
                             swal("Error", "Videollamada Falló, intente nuevamente", "error" );
 
                             break;
                         case 'closed':
                             connstate.innerText = 'Cerrada.';
-
+                            console.log('Cerrada');
                             
                             break;
                     }
