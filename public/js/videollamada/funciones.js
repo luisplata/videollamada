@@ -24,7 +24,7 @@ var webrtc = new SimpleWebRTC({
     autoAdjustMic: false,
 
     nick: nick,
-    url: 'https://signalmaster-nabucomco.c9users.io:8080/'
+    url: signalmaster
 });
 
 console.log(webrtc);

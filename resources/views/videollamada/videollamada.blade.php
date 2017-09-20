@@ -154,6 +154,8 @@
            <?php echo  'var token="'.$token_empresa.'";'; ?> 
            <?php echo  'var nombre="'.$nombre.'";'; ?> 
            <?php echo  'var nombre_sala="'.$nombre_sala.'";'; ?> 
+           //Se coloca el señalizador del .env
+           <?php echo  'var signalmaster="'.env('APP_SIGNALMASTER').'";'; ?> 
         </script>
 
          <script src="/js/videollamada/funciones.js"></script>

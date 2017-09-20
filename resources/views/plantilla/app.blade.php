@@ -63,6 +63,7 @@
                 <div class="inner">
                     <ul class="copyright">
                         <li>&copy; <strong>Nabu</strong> Todos los derechos reservados.</li><li>Diseñado en: <a target="_blank" href="http://html5up.net">HTML5 UP</a></li>
+                        <li> Version @include("plantilla.version")</li>
                     </ul>
                 </div>
             </section>
