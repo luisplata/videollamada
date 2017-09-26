@@ -37,7 +37,17 @@ webrtc.on('readyToCall', function () {
         console.log("Entrando al room");
         // you can name it anything
         if (room){ 
-            webrtc.joinRoom(room);
+            if(obtener_numero_de_usuarios(webrtc) == 2){
+                //alert("Sala llena");
+
+                console.log("Sala llena =(");
+                
+                
+
+            }else{
+                webrtc.joinRoom(room);
+            }
+            
         }else{
             swal("Error", "No se pudo entrar a la videollamada", "error" );
         }
