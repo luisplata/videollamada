@@ -37,7 +37,7 @@ webrtc.on('readyToCall', function () {
         console.log("Entrando al room");
         // you can name it anything
         if (room){ 
-            if(obtener_numero_de_usuarios(webrtc) == 2){
+            if(webrtc.getPeers.length == 2){
                 //alert("Sala llena");
 
                 console.log("Sala llena =(");
