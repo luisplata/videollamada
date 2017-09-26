@@ -34,7 +34,7 @@ console.log(webrtc);
 // when it's ready, join if we got a room from the URL
 webrtc.on('readyToCall', function () {
 
-        console.log("Entrando al room");
+        
         // you can name it anything
         if (room){ 
             if(obtener_numero_de_usuarios(webrtc) == 2){
@@ -46,6 +46,7 @@ webrtc.on('readyToCall', function () {
 
             }else{
                 webrtc.joinRoom(room);
+                console.log("Entrando al room");
             }
             
         }else{
@@ -391,6 +392,7 @@ function desconectar(){
 
 function obtener_numero_de_usuarios(webrtc){
     var n_user = webrtc.webrtc.peers.length;
+    console.log("# peers: "+ n_user);
 
     return n_user;
 }
