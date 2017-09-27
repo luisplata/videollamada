@@ -61,6 +61,15 @@ webrtc.on('createdPeer', function (peer){
     console.log("createdPeer");
     console.log(peer);
     console.log(obtener_numero_de_usuarios(webrtc));
+
+    if(obtener_numero_de_usuarios(webrtc) == 2){
+        //alert("Sala llena");
+
+        console.log("Sala llena =(");
+        swal("Error", "No se pudo entrar a la videollamada", "error" );
+        
+
+    }
 });
 
 function showVolume(el, volume) {
@@ -259,7 +268,7 @@ webrtc.on('iceFailed', function (peer) {
     console.log('local fail', connstate);
     if (connstate) {
         connstate.innerText = 'Falló.';
-        fileinput.disabled = 'disabled';
+        //fileinput.disabled = 'disabled';
 
         swal("Error", "Videollamada Falló, intente nuevamente", "error" );
     }
@@ -276,7 +285,7 @@ webrtc.on('connectivityError', function (peer) {
     console.log('remote fail', connstate);
     if (connstate) {
         connstate.innerText = 'Falló.';
-        fileinput.disabled = 'disabled';
+        //fileinput.disabled = 'disabled';
 
         swal("Error", "Videollamada Falló, intente nuevamente", "error" );
     }
