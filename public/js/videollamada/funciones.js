@@ -24,7 +24,7 @@ var webrtc = new SimpleWebRTC({
     autoAdjustMic: false,
 
     nick: nick,
-    url: signalmaster
+    //url: signalmaster
 });
 
 console.log(webrtc);
