@@ -10,6 +10,9 @@ var nick = location.search && location.search.split("&")[1].replace("nombre=",""
 if(nick == ""){swal("Error", "Error en nombre de usuario", "error" );}
 //alert(nick);
 
+//duracion de llamada
+var duracion_llamada = 0;
+var intervalo_llamada;
 
 // create our webrtc connection
 var webrtc = new SimpleWebRTC({
@@ -191,6 +194,10 @@ webrtc.on('videoAdded', function (video, peer) {
                             //$(vol).show();
                             connstate.innerText = 'Conectado';
                             console.log('Conectado');
+
+                            intervalo_llamada = setInterval(function(){ tiempo_llamada() }, 1000);
+
+
                             break;
                         case 'disconnected':
                             connstate.innerText = 'Desconectado.';
@@ -384,6 +391,7 @@ button.onclick = function () {
 function desconectar(){
 
     if(obtener_numero_de_usuarios(webrtc) == 1){
+        detener_tiempo();
         webrtc.stopLocalVideo();
         webrtc.leaveRoom();
         webrtc.disconnect();
@@ -404,4 +412,29 @@ function obtener_numero_de_usuarios(webrtc){
     console.log("# peers: "+ n_user);
 
     return n_user;
+}
+
+function tiempo_llamada(){
+    duracion_llamada++;
+    console.log(duracion_llamada);
+    //document.getElementById("duracion_llamada").text(duracion_llamada);
+
+     
+    
+
+    $("#duracion_llamada").text(convertTime(duracion_llamada));
+}
+
+function detener_tiempo(){
+    document.getElementById("duracion_llamada").text(0);
+    clearInterval(intervalo_llamada);
+}
+
+var convertTime = function (input, separator) {
+    var pad = function(input) {return input < 10 ? "0" + input : input;};
+    return [
+        pad(Math.floor(input / 3600)),
+        pad(Math.floor(input % 3600 / 60)),
+        pad(Math.floor(input % 60)),
+    ].join(typeof separator !== 'undefined' ?  separator : ':' );
 }

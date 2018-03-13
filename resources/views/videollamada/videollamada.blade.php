@@ -99,6 +99,14 @@
               width: 10%;
             }
 
+            #duracion_llamada{
+              margin-top:5px; 
+              margin-left:10%;
+              position: absolute;
+              z-index: 100;
+              width: 10%;
+            }
+
             
             
             .btn-circle {
@@ -136,6 +144,7 @@
             <div id="localScreenContainer" class="videoContainer">
             </div>
             <div id="remotes">
+                <h1 id="duracion_llamada" class="btn btn-danger btn-circle " style="display: block;">0</h1>
                 <button class="btn btn-danger btn-circle" id="finalizar"  title="Finalizar Videollamada"  onclick="desconectar()">
                   <i class="fa fa-phone"></i> 
                 </button>
