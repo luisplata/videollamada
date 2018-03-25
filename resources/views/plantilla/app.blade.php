@@ -14,11 +14,11 @@
         <meta name="description" content="Servicio de Videollamadas en el navegador" />
         <meta name="keywords" content="Videollamada, videollamada navegador, servicio videollamada, servicio videollamada navegador" />
         <meta name="robots" content="index, follow" />
-        <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
-        <link rel="stylesheet" href="/css/main.css" />        
-        <link rel="stylesheet" href="/css/sweetalert.css" />
-        <!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
-        <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+        <!--[if lte IE 8]><script src="{{asset('assets/js/ie/html5shiv.js')}}"></script><![endif]-->
+        <link rel="stylesheet" href="{{asset('/css/main.css')}}" />        
+        <link rel="stylesheet" href="{{asset('/css/sweetalert.css')}}" />
+        <!--[if lte IE 9]><link rel="stylesheet" href="{{asset('assets/css/ie9.css')}}" /><![endif]-->
+        <!--[if lte IE 8]><link rel="stylesheet" href="{{asset('assets/css/ie8.css')}}" /><![endif]-->
         @yield("css")
     </head>
     <body>
@@ -27,7 +27,7 @@
 
             <!-- Header -->
             <header id="header">
-                <h1><a href="/">Videollamadas</a></h1>
+                <h1><a href="{{url('/')}}">Videollamadas</a></h1>
                 <nav>
                     <a href="#menu">Menu</a>
                 </nav>
@@ -38,7 +38,7 @@
                 <div class="inner">
                     <h2>Menu</h2>
                     <ul class="links">
-                        <li><a href="/">Inicio</a></li>
+                        <li><a href="{{url('/')}}">Inicio</a></li>
                         <?php
                         if (!is_object(Session::get("empresa"))) {
                             ?>
@@ -46,7 +46,7 @@
                             <?php
                         } else {
                             ?>
-                            <li><a href="/logout">Salir</a></li>
+                            <li><a href="{{url('/logout')}}">Salir</a></li>
                             <?php
                         }
                         ?>
@@ -72,13 +72,13 @@
         </div>
 
         <!-- Scripts -->
-        <script src="/js/skel.min.js"></script>
-        <script src="/js/jquery.min.js"></script>
-        <script src="/js/jquery.scrollex.min.js"></script>
-        <script src="/js/util.js"></script>
-        <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
-        <script src="/js/sweetalert-dev.js"></script>
-        <script src="/js/main.js"></script>
+        <script src="{{asset('/js/skel.min.js')}}"></script>
+        <script src="{{asset('/js/jquery.min.js')}}"></script>
+        <script src="{{asset('/js/jquery.scrollex.min.js')}}"></script>
+        <script src="{{asset('/js/util.js')}}"></script>
+        <!--[if lte IE 8]><script src="{{asset('assets/js/ie/respond.min.js')}}"></script><![endif]-->
+        <script src="{{asset('/js/sweetalert-dev.js')}}"></script>
+        <script src="{{asset('/js/main.js')}}"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         @yield("scripts")
         @include("modal_registro")
