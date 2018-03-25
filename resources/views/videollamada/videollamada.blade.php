@@ -9,13 +9,13 @@
         <meta name="robots" content="noindex, nofollow" />
         <meta name="organization" content="NABU S.A.S." />
         <meta name="lang" content="es-ES" />
-      <link rel="stylesheet" href="/css/main.css" /> 
+      <link rel="stylesheet" href="{{asset('/css/main.css')}}" /> 
 
 
       <!-- Bootstrap -->
-    <link href="/css/bootstrap.min.css" rel="stylesheet"> 
+    <link href="{{asset('/css/bootstrap.min.css')}}" rel="stylesheet"> 
 
-    <link rel="stylesheet" href="/css/sweetalert.css" />
+    <link rel="stylesheet" href="{{asset('/css/sweetalert.css')}}" />
 
         <style>
         body{
@@ -62,7 +62,6 @@
                 display: none;
               }
             }*/
-
 
 
             .video1{ 
@@ -187,11 +186,11 @@
         
         </div>
         <!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>-->
-        <script src="/js/jquery.min.js"></script>
-        <script src="/js/videollamada/adapter-latest.js"></script>
-        <script src="/js/videollamada/simplewebrtc.bundle.js"></script>
-        <script src="/js/bootstrap.min.js"></script>
-        <script src="/js/sweetalert-dev.js"></script>
+        <script src="{{asset('/js/jquery.min.js')}}"></script>
+        <script src="{{asset('/js/videollamada/adapter-latest.js')}}"></script>
+        <script src="{{asset('/js/videollamada/simplewebrtc.bundle.js')}}"></script>
+        <script src="{{asset('/js/bootstrap.min.js')}}"></script>
+        <script src="{{asset('/js/sweetalert-dev.js')}}"></script>
 
         <script type="text/javascript">
            <?php echo  'var token="'.$token_empresa.'";'; ?> 
@@ -201,7 +200,7 @@
            <?php echo  'var signalmaster="'.env('APP_SIGNALMASTER').'";'; ?> 
         </script>
 
-         <script src="/js/videollamada/funciones.js"></script>
+         <script src="{{asset('/js/videollamada/funciones.js')}}"></script>
 
          <script type="text/javascript">
          //hover mostrar botones
