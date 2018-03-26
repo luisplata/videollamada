@@ -89,7 +89,7 @@ define({ "api": [
     "examples": [
       {
         "title": "Ejemplo de Uso:",
-        "content": "https://videollamada.telemedicina.hus.org.co:4433/api/empresa/registro",
+        "content": "https://telemedicina.hus.org.co:4433/api/empresa/registro",
         "type": "json"
       }
     ],
@@ -149,7 +149,7 @@ define({ "api": [
     },
     "sampleRequest": [
       {
-        "url": "https://videollamada.telemedicina.hus.org.co:4433/api/empresa/registro"
+        "url": "https://telemedicina.hus.org.co:4433/api/empresa/registro"
       }
     ],
     "error": {
@@ -190,7 +190,7 @@ define({ "api": [
     "examples": [
       {
         "title": "Ejemplo de Uso:",
-        "content": "https://videollamada.telemedicina.hus.org.co:4433/api/obtener/url",
+        "content": "https://telemedicina.hus.org.co:4433/api/obtener/url",
         "type": "json"
       }
     ],
@@ -229,7 +229,7 @@ define({ "api": [
     },
     "sampleRequest": [
       {
-        "url": "https://videollamada.telemedicina.hus.org.co:4433/api/obtener/url"
+        "url": "https://telemedicina.hus.org.co:4433/api/obtener/url"
       }
     ],
     "error": {
