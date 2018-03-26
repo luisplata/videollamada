@@ -1,7 +1,7 @@
 {
-  "name": "Nabu - Videollamada",
+  "name": "HUS - Videollamada",
   "version": "0.1.0",
-  "description": "Api para el servicio de videollamada de nabu",
+  "description": "Api para el servicio de videollamada del HUS",
   "title": "Documentacion API",
   "url" : ""
 }
