@@ -6,13 +6,9 @@
 -->
 <html>
     <head>
-        <title>@yield("titulo", "Nabu")</title>
+        <title>@yield("titulo",env("APP_NAME"))</title>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="application-name" content="Nabu - videollamadas" />
-        <meta name="author" content="nabu.com.co" />
-        <meta name="description" content="Servicio de Videollamadas en el navegador" />
-        <meta name="keywords" content="Videollamada, videollamada navegador, servicio videollamada, servicio videollamada navegador" />
         <meta name="robots" content="index, follow" />
         <!--[if lte IE 8]><script src="{{asset('assets/js/ie/html5shiv.js')}}"></script><![endif]-->
         <link rel="stylesheet" href="{{asset('/css/main.css')}}" />        
@@ -62,7 +58,7 @@
             <section id="footer">
                 <div class="inner">
                     <ul class="copyright">
-                        <li>&copy; <strong>Nabu</strong> Todos los derechos reservados.</li><li>Diseñado en: <a target="_blank" href="http://html5up.net">HTML5 UP</a></li>
+                        <li>&copy; <strong>{{env("APP_NAME")}}</strong> Todos los derechos reservados.</li><li>Diseñado en: <a target="_blank" href="http://html5up.net">HTML5 UP</a></li>
                         <li> Version @include("plantilla.version")</li>
                     </ul>
                 </div>
