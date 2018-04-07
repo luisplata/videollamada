@@ -48,9 +48,11 @@ webrtc.on('readyToCall', function () {
             //}else{
                 webrtc.joinRoom(room);
                console.log("Entrando al room");
+               intervalo_llamada = setInterval(function(){ tiempo_llamada() }, 1000);
             //}
             
         }else{
+            mensaje_log("No se pudo entrar a la videollamada", nick);
             swal("Error", "No se pudo entrar a la videollamada", "error" );
         }
 
@@ -90,6 +92,7 @@ webrtc.on('localStream', function (stream) {
 webrtc.on('localMediaError', function (err) {
     console.log(err);
     console.log("No se accedio a la camara.");
+    mensaje_log("No se pudo acceder a la camara", nick);
     swal("Error", "No se pudo acceder a la camara", "error" );
 });
 
@@ -122,7 +125,7 @@ webrtc.on('videoAdded', function (video, peer) {
     console.log('video added', peer);
     console.log('Nickname', peer.nick);
     console.log(webrtc);
-
+    mensaje_log("Se agrego un nuevo peer", nick);
     //console.log(obtener_numero_de_usuarios(webrtc));//numero de pares conectados
 
 
@@ -208,26 +211,28 @@ webrtc.on('videoAdded', function (video, peer) {
                         case 'checking':
                             connstate.innerText = 'Conectando';
                             console.log('Conectando');
+                            mensaje_log("Conectando", nick);
                             break;
                         case 'connected':
                         case 'completed': // on caller side
                             //$(vol).show();
                             connstate.innerText = 'Conectado '+peer.nick;
                             console.log('Conectado '+peer.nick);
-
-                            intervalo_llamada = setInterval(function(){ tiempo_llamada() }, 1000);
+                            mensaje_log("Conectado", nick);
+                            
 
 
                             break;
                         case 'disconnected':
                             connstate.innerText = 'Desconectado.';
                             console.log('Desconectado');
-
+                            mensaje_log("Desconectado", nick);
                             break;
                         case 'failed':
                             detener_tiempo();
                             connstate.innerText = 'Falló.';
                             console.log('Falló');
+                            mensaje_log("Falló", nick);
                             swal("Error", "Videollamada Falló, intente nuevamente", "error" );
 
                             break;
@@ -235,7 +240,7 @@ webrtc.on('videoAdded', function (video, peer) {
                             detener_tiempo();
                             connstate.innerText = 'Cerrada.';
                             console.log('Cerrada');
-                            
+                            mensaje_log("Cerrada", nick);
                             break;
                     }
                 });
@@ -268,6 +273,7 @@ webrtc.on('videoRemoved', function (video, peer) {
         console.log(peer.parent._log());
 
          detener_tiempo();
+         mensaje_log(peer.nick+" ha finalizado la llamada", nick);
         swal("Info", peer.nick+" ha finalizado la llamada", "success" );
 
         //cerrar ventana actual
@@ -295,10 +301,12 @@ webrtc.on('iceFailed', function (peer) {
 
     var connstate = document.querySelector('#container_' + webrtc.getDomId(peer) + ' .connectionstate');
     console.log('local fail', connstate);
+    mensaje_log(connstate, nick);
     if (connstate) {
         connstate.innerText = 'Falló.';
         //fileinput.disabled = 'disabled';
 
+         mensaje_log("Videollamada Falló, intente nuevamente", nick);
         swal("Error", "Videollamada Falló, intente nuevamente", "error" );
     }
 });
@@ -312,10 +320,11 @@ webrtc.on('connectivityError', function (peer) {
 
     var connstate = document.querySelector('#container_' + webrtc.getDomId(peer) + ' .connectionstate');
     console.log('remote fail', connstate);
+    mensaje_log(connstate, nick);
     if (connstate) {
         connstate.innerText = 'Falló.';
         //fileinput.disabled = 'disabled';
-
+         mensaje_log("Videollamada Falló, intente nuevamente", nick);
         swal("Error", "Videollamada Falló, intente nuevamente", "error" );
     }
 });
@@ -366,7 +375,7 @@ if (room) {
                 setRoom(name);
             } else {
                 console.log(err);
-
+                 mensaje_log("No se pudo crear sala, intente nuevamente", nick);
                 swal("Error", "No se pudo crear sala, intente nuevamente", "error" );
             }
         });
@@ -419,7 +428,7 @@ function desconectar(){
         webrtc.disconnect();
 
         
-
+         mensaje_log("Se ha finalizado la llamada");
         swal("Info", "Se ha finalizado la llamada", "success" );
 
         //cerrar ventana actual
@@ -448,7 +457,8 @@ function tiempo_llamada(){
 }
 
 function detener_tiempo(){
-    document.getElementById("duracion_llamada").text(0);
+    
+    $("#duracion_llamada").text(convertTime(0));
     clearInterval(intervalo_llamada);
 }
 

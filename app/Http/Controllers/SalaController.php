@@ -83,14 +83,50 @@ class SalaController extends Controller {
             $sala->fecha_hora_inicio = date("Y-m-d H:i:s");
             $sala->empresas_id = $empresa->id;
             if ($sala->save()) {
+                 \App\Miselane::logInterno(null, "Se creo la sala");
                 return response()->json(array("url"=>url("") . '/videollamada?sala=' . $sala->nombre_sala . '&nombre=NOMBRE_USUARIO'));
             } else {
+                 \App\Miselane::logInterno(null, "No se creo la sals");
                 return response()->json("No se creo la sala, vuelva a intentarlo",502);
             }
         } catch (\PDOException $e) {
             //return response()->json("/?mensaje=No se guardo, " . $e->getPrevious());
             return response()->json($e->getPrevious(),501);
         }
+    }
+
+    public function capturar_log(Request $request){
+        \App\Micelane::logInterno(null, $request->mensaje, $request->nombre);
+    }
+
+    public function consultar_log_videollamada(Request $request){
+        //if(is_object(\App\Empresa::getByToken($request->token))){
+            //return response()->json(\App\Log::all());
+        //}else{
+         //   return response()->json("No tiene permisos para consultar");
+        //}
+
+        $dato = new \App\Log();
+        $path="logs?algo=";
+
+        //dd($request->fechaFin);
+        if ($request->fechaInicio && $request->fechaFin) {
+            $fechaInicio = \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $request->fechaInicio." 00:00:00");
+            $fechaFin = \Carbon\Carbon::createFromFormat('Y-m-d H:i', $request->fechaFin." 23:59");
+            //dd($fechaInicio);
+            $dato = $dato->whereBetween('created_at', [$fechaInicio, $fechaFin])
+                    ->orderBy("id", "desc");
+                    
+            $path .= '&&fechaInicio=' . $request->fechaInicio . "&fechaFin=" . $request->fechaFin;
+        }
+        
+        $dato = $dato->orderBy("id", "desc");
+        
+        $dato = $dato->paginate(30);
+        $dato->setPath($path);
+        return $dato;
+        
+        
     }
 
 }
