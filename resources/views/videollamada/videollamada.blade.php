@@ -81,7 +81,7 @@
 
              .video2{ 
               
-              top: 70%; 
+              top: 75%; 
               /*left: 50%; 
               min-width: 100%; 
               min-height: 100%; 
@@ -212,6 +212,27 @@
 
             
           });
+      </script>
+
+      <script type="text/javascript">
+         function mensaje_log(mensaje, nombre){
+           $.ajax({
+              type: "POST",
+             headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+              url: "{{url('videollamada_log')}}",
+              data: "mensaje="+mensaje+"&nombre="+nombre+"&_token={{ csrf_token() }}",
+              success:  function(data) {
+                 
+                  console.info(data);
+                  
+                  
+              }
+
+          });
+
+       }
       </script>
         
     </body>

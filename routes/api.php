@@ -105,3 +105,38 @@ Route::post("obtener/url","SalaController@obtenerUrl");
  * @apiUse db
  */
 Route::post("empresa/registro", "EmpresaController@registro_api");
+/**
+ * @api {POST} /api/videollamada_log Recurso para consultar el log desde afuera
+ * @apiGroup Logs
+ * @apiDescription Cuando un sistema externo desea consultar los logs internos.
+ * Puede hacerlo mediante este recurso
+ * @apiVersion 0.1.0
+ * 
+ * @apiExample Ejemplo de Uso:
+ * https://videollamada.nabu.com.co/api/videollamada_log
+ * 
+ * @apiParam {string} token Token de la empresa que se creo al registrarse.
+ * 
+ * 
+ * @apiSuccess {string} URL Url logs del sistema de videollamada
+ * 
+ * @apiSuccessExample Ejemplo de Éxito:
+ *      HTTP/1.1 200 OK
+ *      [
+*		    {
+*		        "id": 1,
+*		        "created_at": "2018-04-06 22:46:58",
+*		        "updated_at": "2018-04-06 22:46:58",
+*		        "mensaje": "Desconectado",
+*		        "accion": "|Method:GET|Menssage:Desconectado|IP:127.0.0.1|Url:http://localhost:8000/capturar_log",
+*
+*				
+*		        "usuario": "Sistema"
+*		    }
+ *  	]
+ * 
+ *  
+ *
+ * @apiUse db
+ */
+Route::post("consultar_log_videollamada", "SalaController@consultar_log_videollamada");

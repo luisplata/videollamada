@@ -33,6 +33,8 @@ Route::post("empresa/registro", "EmpresaController@registro");
 
 
 Route::get("videollamada", "SalaController@participante");
+Route::post("videollamada_log", "SalaController@capturar_log");
+
 
 
 Route::group(['middleware' => ['usuarioLogeado']], function () {
