@@ -106,7 +106,7 @@ class SalaController extends Controller {
          //   return response()->json("No tiene permisos para consultar");
         //}
 
-        $dato = new \App\Log();
+      /*  $dato = new \App\Log();
         $path="logs?algo=";
 
         //dd($request->fechaFin);
@@ -122,9 +122,10 @@ class SalaController extends Controller {
         
         $dato = $dato->orderBy("id", "desc");
         
-        $dato = $dato->paginate(30);
-        $dato->setPath($path);
-        return $dato;
+        //$dato = $dato->paginate(30);
+        //$dato->setPath($path);
+        return $dato;*/
+        return response()->json(\App\Log::all());
         
         
     }
