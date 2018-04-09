@@ -106,26 +106,30 @@ class SalaController extends Controller {
          //   return response()->json("No tiene permisos para consultar");
         //}
 
-      /*  $dato = new \App\Log();
+        $dato = new \App\Log();
         $path="logs?algo=";
 
         //dd($request->fechaFin);
         if ($request->fechaInicio && $request->fechaFin) {
+
             $fechaInicio = \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $request->fechaInicio." 00:00:00");
-            $fechaFin = \Carbon\Carbon::createFromFormat('Y-m-d H:i', $request->fechaFin." 23:59");
+            $fechaFin = \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $request->fechaFin." 23:59:59");
             //dd($fechaInicio);
-            $dato = $dato->whereBetween('created_at', [$fechaInicio, $fechaFin])
-                    ->orderBy("id", "desc");
-                    
-            $path .= '&&fechaInicio=' . $request->fechaInicio . "&fechaFin=" . $request->fechaFin;
+            $dato = \App\Log::whereBetween('created_at', [$fechaInicio, $fechaFin])
+                    ->orderBy("id", "desc")->get();
+        
+           
+           
+            //$dato = $dato->orderBy("id", "desc");
+        }else{
+            $dato = \App\Log::all();
         }
         
-        $dato = $dato->orderBy("id", "desc");
         
-        //$dato = $dato->paginate(30);
-        //$dato->setPath($path);
-        return $dato;*/
-        return response()->json(\App\Log::all());
+        
+        
+        return response()->json($dato);
+        //return response()->json(\App\Log::all());
         
         
     }
