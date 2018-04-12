@@ -83,10 +83,10 @@ class SalaController extends Controller {
             $sala->fecha_hora_inicio = date("Y-m-d H:i:s");
             $sala->empresas_id = $empresa->id;
             if ($sala->save()) {
-                 \App\Miselane::logInterno(null, "Se creo la sala");
+                 \App\Micelane::logInterno(null, "Se creo la sala");
                 return response()->json(array("url"=>url("") . '/videollamada?sala=' . $sala->nombre_sala . '&nombre=NOMBRE_USUARIO'));
             } else {
-                 \App\Miselane::logInterno(null, "No se creo la sals");
+                 \App\Micelane::logInterno(null, "No se creo la sals");
                 return response()->json("No se creo la sala, vuelva a intentarlo",502);
             }
         } catch (\PDOException $e) {
