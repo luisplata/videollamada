@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="es">
     <head>
-        <title>Videollamada NABU</title>
+        <title>{{env("APP_NAME")}}</title>
        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="author" content="Luis Enrique Plata Osorio (www.luisplata@gmail.com) - Tilson Navarro (fernandeztilson@gmail.com)" />

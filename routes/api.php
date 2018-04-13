@@ -25,7 +25,7 @@ use Illuminate\Http\Request;
  * @apiVersion 0.1.0
  * 
  * @apiExample Ejemplo de Uso:
- * https://quehaypahacer.nabu.com.co/api/plantilla/{Tipo:parametro_get}
+ * https://api.telemedicina.hus.org.co:4433/api/plantilla/{Tipo:parametro_get}
  * 
  * @apiParam {string} Parametro Parametro (POST|PUT|DELECT) en la petición.
  * 
@@ -53,7 +53,7 @@ use Illuminate\Http\Request;
  * @apiVersion 0.1.0
  * 
  * @apiExample Ejemplo de Uso:
- * https://videollamada.nabu.com.co/api/obtener/url
+ * https://telemedicina.hus.org.co:4433/api/obtener/url
  * 
  * @apiParam {string} token Token de la empresa que se creo al registrarse.
  * 
@@ -62,10 +62,10 @@ use Illuminate\Http\Request;
  * @apiSuccessExample Ejemplo de Éxito:
  *      HTTP/1.1 200 OK
  *      {
- *          "url":"https://videollamada.nabu.com.co/videollamada?sala=SalaVideollamada&nombre="
+ *          "url":"https://videollamada.telemedicina.hus.org.co:4433/videollamada?sala=SalaVideollamada&nombre="
  *      }
  * 
- * @apiSampleRequest https://videollamada.nabu.com.co/api/obtener/url
+ * @apiSampleRequest https://telemedicina.hus.org.co:4433/api/obtener/url
  * 
  * @apiError 403 Token no valido.
  * @apiError 502 No se creo la sala, volver a intentarlo
@@ -81,7 +81,7 @@ Route::post("obtener/url","SalaController@obtenerUrl");
  * @apiVersion 0.1.0
  * 
  * @apiExample Ejemplo de Uso:
- * https://videollamada.nabu.com.co/api/empresa/registro
+ * https://telemedicina.hus.org.co:4433/api/empresa/registro
  * 
  * @apiParam {string} nombre **maxlength:190** | **Required**
  * @apiParam {string} email **maxlength:190** | **Required** | **Unique**
@@ -97,7 +97,7 @@ Route::post("obtener/url","SalaController@obtenerUrl");
  *          token:"$gd7689768&8ihji&hnoonofe"
  *      }
  * 
- * @apiSampleRequest https://videollamada.nabu.com.co/api/empresa/registro
+ * @apiSampleRequest https://telemedicina.hus.org.co:4433/api/empresa/registro
  * 
  * @apiError 513 No se pudo Guardar la información
  * @apiError 514 Error de validación.
