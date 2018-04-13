@@ -40,10 +40,10 @@ class EmpresaController extends Controller {
             $empresa->pass = Hash::make($request->pass);
             $empresa->token = Hash::make(date("YYYY-MM-dd HH:ii:ss"));
             if ($empresa->save()) {
-                \App\Micelane::logInterno(null, "Se creo el token");
+                \App\Micelane::logInterno(null, "Se creo el token", "Sistema");
                 return response()->json(array("token" => $empresa->token));
             } else {
-                \App\Micelane::logInterno(null, "No se creo el token");
+                \App\Micelane::logInterno(null, "No se creo el token", "Sistema");
                 return response()->json("No se guardo la empresa", 513);
             }
         } catch (\PDOException $e) {
