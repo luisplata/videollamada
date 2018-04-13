@@ -9,7 +9,7 @@
     "examples": [
       {
         "title": "Ejemplo de Uso:",
-        "content": "https://quehaypahacer.nabu.com.co/api/plantilla/{Tipo:parametro_get}",
+        "content": "https://api.telemedicina.hus.org.co:4433/api/plantilla/{Tipo:parametro_get}",
         "type": "json"
       }
     ],
@@ -89,7 +89,7 @@
     "examples": [
       {
         "title": "Ejemplo de Uso:",
-        "content": "https://videollamada.nabu.com.co/api/empresa/registro",
+        "content": "https://telemedicina.hus.org.co:4433/api/empresa/registro",
         "type": "json"
       }
     ],
@@ -149,7 +149,7 @@
     },
     "sampleRequest": [
       {
-        "url": "https://videollamada.nabu.com.co/api/empresa/registro"
+        "url": "https://telemedicina.hus.org.co:4433/api/empresa/registro"
       }
     ],
     "error": {
@@ -190,7 +190,7 @@
     "examples": [
       {
         "title": "Ejemplo de Uso:",
-        "content": "https://videollamada.nabu.com.co/api/obtener/url",
+        "content": "https://telemedicina.hus.org.co:4433/api/obtener/url",
         "type": "json"
       }
     ],
@@ -222,14 +222,14 @@
       "examples": [
         {
           "title": "Ejemplo de Éxito:",
-          "content": "HTTP/1.1 200 OK\n{\n    \"url\":\"https://videollamada.nabu.com.co/videollamada?sala=SalaVideollamada&nombre=\"\n}",
+          "content": "HTTP/1.1 200 OK\n{\n    \"url\":\"https://videollamada.telemedicina.hus.org.co:4433/videollamada?sala=SalaVideollamada&nombre=\"\n}",
           "type": "json"
         }
       ]
     },
     "sampleRequest": [
       {
-        "url": "https://videollamada.nabu.com.co/api/obtener/url"
+        "url": "https://telemedicina.hus.org.co:4433/api/obtener/url"
       }
     ],
     "error": {
